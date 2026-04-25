@@ -1,0 +1,189 @@
+USABLE
+127.0.0.1 - - [25/Apr/2026 12:17:30] "GET /todos/1 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:17:30] "[35m[1mPOST /todos HTTP/1.1[0m" 201 -
+127.0.0.1 - - [25/Apr/2026 12:17:30] "[31m[1mPOST /todos HTTP/1.1[0m" 400 -
+127.0.0.1 - - [25/Apr/2026 12:17:30] "[31m[1mPOST /todos HTTP/1.1[0m" 400 -
+127.0.0.1 - - [25/Apr/2026 12:17:30] "[33mGET /todos/999 HTTP/1.1[0m" 404 -
+[server] real socket on http://127.0.0.1:37275
+[GET /todos/1] 200 -> {'task': 'buy milk', 'done': False}
+[POST /todos] 201 -> {'id': '3', 'task': 'review PR'}
+[POST /todos empty body] 400 (reqparse) -> {'message': {'task': 'Missing required parameter in the JSON body'}}
+[POST /todos malformed] 400 -> ok
+[GET /todos/999] 404
+[modules] Api=flask_restful Resource=flask_restful RequestParser=flask_restful.reqparse inputs=flask_restful.inputs
+[server] real socket on http://127.0.0.1:37275
+[GET /todos/1] 200 -> {'task': 'buy milk', 'done': False}
+[POST /todos] 201 -> {'id': '3', 'task': 'review PR'}
+[POST /todos empty body] 400 (reqparse) -> {'message': {'task': 'Missing required parameter in the JSON body'}}
+[POST /todos malformed] 400 -> ok
+[GET /todos/999] 404
+[modules] Api=flask_restful Resource=flask_restful RequestParser=flask_restful.reqparse inputs=flask_restful.inputs
+
+USABLE
+Traceback (most recent call last):
+  File "/home/zhihao/hdd/RepoRescue_Clean/artifacts/flask-restful/downstream_validate.py", line 27, in <module>
+    class TodoResource(Resource):
+    ...<11 lines>...
+            return {"id": int(todo_id), "task": f"task-{todo_id}"}, 200
+  File "/home/zhihao/hdd/RepoRescue_Clean/artifacts/flask-restful/downstream_validate.py", line 28, in TodoResource
+    @swagger.doc({
+     ^^^^^^^^^^^
+AttributeError: module 'flask_restful_swagger_3.swagger' has no attribute 'doc'
+Traceback (most recent call last):
+  File "/home/zhihao/hdd/RepoRescue_Clean/artifacts/flask-restful/downstream_validate.py", line 27, in <module>
+    class TodoResource(Resource):
+    ...<5 lines>...
+            return {"id": int(todo_id), "task": f"task-{todo_id}"}, 200
+  File "/home/zhihao/hdd/RepoRescue_Clean/artifacts/flask-restful/downstream_validate.py", line 29, in TodoResource
+    @swagger.parameter(_in="path", name="todo_id", description="todo id",
+     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       schema={"type": "integer"}, required=True)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/flask-restful-downstream/lib/python3.13/site-packages/flask_restful_swagger_3/swagger.py", line 1139, in parameter
+    return parameters(params)
+  File "/tmp/flask-restful-downstream/lib/python3.13/site-packages/flask_restful_swagger_3/swagger.py", line 1080, in parameters
+    raise ValidationError("""
+    ...<2 lines>...
+    """)
+flask_restful_swagger_3.swagger.ValidationError: 
+            parameter with path must be set automlatically when added variable in url path
+            example: api.add_resource(/user/<int:user_id>)
+            
+Traceback (most recent call last):
+  File "/home/zhihao/hdd/RepoRescue_Clean/artifacts/flask-restful/downstream_validate.py", line 79, in <module>
+    main()
+    ~~~~^^
+  File "/home/zhihao/hdd/RepoRescue_Clean/artifacts/flask-restful/downstream_validate.py", line 36, in main
+    api = Api(
+        app,
+    ...<4 lines>...
+        description="exercise flask-restful via flask-restful-swagger-3",
+    )
+  File "/tmp/flask-restful-downstream/lib/python3.13/site-packages/flask_restful_swagger_3/__init__.py", line 77, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+TypeError: Api.__init__() got an unexpected keyword argument 'api_version'
+Traceback (most recent call last):
+  File "/home/zhihao/hdd/RepoRescue_Clean/artifacts/flask-restful/downstream_validate.py", line 80, in <module>
+    main()
+    ~~~~^^
+  File "/home/zhihao/hdd/RepoRescue_Clean/artifacts/flask-restful/downstream_validate.py", line 44, in main
+    api.add_resource(TodoResource, "/todo/<int:todo_id>")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/flask-restful-downstream/lib/python3.13/site-packages/flask_restful_swagger_3/__init__.py", line 206, in add_resource
+    operations_object[method]["summary"] = f"Operations on {', '.join(tags).lower()}"
+                                                            ~~~~~~~~~^^^^^^
+TypeError: sequence item 0: expected str instance, list found
+127.0.0.1 - - [25/Apr/2026 12:18:38] "GET /api/swagger.json HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:18:38] "GET /todo/42 HTTP/1.1" 200 -
+[swagger.json] paths=['/todo/{todo_id}']
+[GET /todo/42] -> {'id': 42, 'task': 'task-42'}
+[provenance] flask_restful.__file__=/home/zhihao/hdd/RepoRescue_Clean/repos/rescue_kimi/flask-restful/flask_restful/__init__.py
+DOWNSTREAM_OK
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "[31m[1mPOST /echo HTTP/1.1[0m" 400 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2026 12:19:04] "POST /echo HTTP/1.1" 200 -
+# Bug hunt findings
+('empty body, no ct', 200, '{"args": {"name": null, "count": null}}\n')
+('ct=json empty', 200, '{"args": {"name": null, "count": null}}\n')
+('ct=json bad', 200, '{"args": {"name": null, "count": null}}\n')
+('unicode form', 200, '{"args": {"name": "\\u00fcmlaut-\\u540d\\u524d", "count": 7}}\n')
+('long json', 200, '{"args": {"name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+('repeat-0', 200, '{"args": {"name": "r0", "count": 0}}\n')
+('repeat-1', 200, '{"args": {"name": "r1", "count": 1}}\n')
+('repeat-2', 200, '{"args": {"name": "r2", "count": 2}}\n')
+('repeat-3', 200, '{"args": {"name": "r3", "count": 3}}\n')
+('repeat-4', 200, '{"args": {"name": "r4", "count": 4}}\n')
+('type mismatch', 400, '{"message": {"count": "invalid literal for int() with base 10: \'not-an-int\'"}}\n')
+('concurrent-80', 'ok', 'no crash')
+
+server_500_observed: False
+BUG_HUNT_DONE: no critical regression
